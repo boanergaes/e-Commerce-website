@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
-        <header className="header flex justify-between items-center gap-10 fixed top-0 w-screen bg-green-900 text-white font-bold px-10 py-4">
+        <header className="header flex justify-between items-center gap-10 fixed top-0 z-10 w-screen bg-green-900 text-white font-bold px-10 py-4">
             <div className="left-section">
                 <Link to="/" className="header-link">
                     <img className="logo w-60 h-auto" src="/images/logo-white.png" />
