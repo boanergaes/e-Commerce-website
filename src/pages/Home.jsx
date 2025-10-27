@@ -8,10 +8,6 @@ export default function Home({loading, fetcher}) {
 
     const products = useContext(ProductContext)
 
-    useEffect(() => {
-        fetcher()
-    }, [])
-
     if (loading) return <div className="pt-30">Loading...</div>
 
     return (

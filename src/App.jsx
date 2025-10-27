@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import { Route, Routes } from 'react-router-dom'
@@ -38,6 +38,11 @@ function App() {
       console.error('error:', err)
     }
   }
+
+  
+  useEffect(() => {
+      fetchProducts()
+  }, [])
 
   return (
     <ProductContext.Provider value={products}>
