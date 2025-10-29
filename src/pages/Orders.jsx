@@ -1,5 +1,10 @@
+import Header from "../components/Header";
+
 export default function Orders() {
     return (
-        <div className="pt-20">Orders</div>
+        <>
+            <Header />
+            <div className="pt-20">Orders</div>
+        </>
     )
 }

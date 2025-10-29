@@ -23,19 +23,19 @@ function App() {
           setProducts(data)
           setLoadingProducts(false)
       } catch(err) {
-          console.error('error:', err)
+          console.error('error fetching products:', err)
       }
   }
 
   async function fetchCart() {
-    console.log('called')
+    // console.log('called')
     try {
       const cartList = await fetch('/backend/cart.json')
       const data = await cartList.json()
       setCart(data)
       setLoadingCart(false)
     } catch(err) {
-      console.error('error:', err)
+      console.error('error fetching cart:', err)
     }
   }
 
@@ -46,7 +46,6 @@ function App() {
 
   return (
     <ProductContext.Provider value={products}>
-      <Header />
       <Routes>
         <Route path='/' element={<Home loading={loadingProducts} fetcher={fetchProducts} />} />
         <Route path='/checkout' element={<Checkout cart={cart} loading={loadingCart} fetcher={fetchCart} />} />

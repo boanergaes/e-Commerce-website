@@ -1,7 +1,7 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ProductContext } from "../App"
 
-export default function CartCard({productId, quantity, deliveryOptionId}) {
+export default function CartCard({productId, quantity, deliveryOptionId, deliveryOptions}) {
     const products = useContext(ProductContext)
     const product = products.find(prod => prod.id == productId)
 
@@ -39,15 +39,31 @@ export default function CartCard({productId, quantity, deliveryOptionId}) {
                   Choose a delivery option:
                 </div>
 
-                <div className="delivery-option flex gap-2">
-                  <input type="radio" className="delivery-option-input" name={`delivery-option-${productId}`} />
+                {deliveryOptions.map((item) => {
+                  return (
+                    <div key={item.id} className="delivery-option flex gap-2">
+                      <input defaultChecked={item.id === deliveryOptionId} type="radio" name={`delivery-option-${productId}`} id={`delivery-option-${productId}`} className="delivery-option-input" />
+
+                      <div>
+                        <div className="delivery-option-date font-medium">
+                          {`${item.deliveryDays} ${item.deliveryDays === 1 ? 'day' : 'days'} from now.`}
+                        </div>
+                        <div className="delivery-option-price text-gray-500">
+                          {item.priceCents === 0 ? 'FREE' : item.priceCents / 100 + ' -'} Shipping
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+                {/* <div className="delivery-option flex gap-2">
+                  <input checked type="radio" className="delivery-option-input" name={`delivery-option-${productId}`} />
                   
                   <div>
                     <div className="delivery-option-date font-medium">
                       Tuesday, June 21
                     </div>
                     <div className="delivery-option-price text-gray-500">
-                      FREE Shipping
+                      --{deliveryOption.find((item) => item.deliveryOptionId == deliveryOption).priceCents / 100} Shipping
                     </div>
                   </div>
 
@@ -77,7 +93,7 @@ export default function CartCard({productId, quantity, deliveryOptionId}) {
                     </div>
                   </div>
 
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

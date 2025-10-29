@@ -6,6 +6,7 @@ export default function Header() {
             <div className="left-section">
                 <Link to="/" className="header-link">
                     <img className="logo w-60 h-auto" src="/images/logo-white.png" />
+                    <img className="mobile-logo hidden" src="images/mobile-logo-white.png" />
                 </Link>
             </div>
 
