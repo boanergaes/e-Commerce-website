@@ -13,10 +13,5 @@
     "id": "3",
     "deliveryDays": 1,
     "priceCents": 999
-  },
-  {
-    "id": "4",
-    "deliveryDays": 0,
-    "priceCents": 1999
   }
 ]

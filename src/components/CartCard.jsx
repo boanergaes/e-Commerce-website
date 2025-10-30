@@ -1,8 +1,12 @@
 import { useContext, useEffect, useState } from "react"
 import { ProductContext } from "../App"
+import { DeliveryOptionsContext } from "../App"
+import { roundToTwo } from "../utils/utils"
 
-export default function CartCard({productId, quantity, deliveryOptionId, deliveryOptions}) {
+export default function CartCard({productId, quantity, deliveryOptionId}) {
     const products = useContext(ProductContext)
+    const deliveryOptions = useContext(DeliveryOptionsContext)
+
     const product = products.find(prod => prod.id == productId)
 
     return (
@@ -11,7 +15,7 @@ export default function CartCard({productId, quantity, deliveryOptionId, deliver
               Delivery date: Tuesday, June 21
             </div>
 
-            <div className="cart-item-details-grid grid grid-cols-[100px_1fr_1fr] gap-8">
+            <div className="cart-item-details-grid grid grid-cols-[100px_1fr] sm:grid-cols-[100px_1fr_1fr] gap-8">
               <img className="product-image" src={`/${product.image}`} />
 
               <div className="cart-item-details">
@@ -19,7 +23,7 @@ export default function CartCard({productId, quantity, deliveryOptionId, deliver
                   {product.name}
                 </div>
                 <div className="product-price font-bold">
-                  {`$${ (product.priceCents/100) }`}
+                  ${roundToTwo(product.priceCents/100) }
                 </div>
                 <div className="product-quantity flex gap-2">
                   <span>
@@ -34,7 +38,7 @@ export default function CartCard({productId, quantity, deliveryOptionId, deliver
                 </div>
               </div>
 
-              <div className="delivery-options">
+              <div className="col-span-full sm:col-span-1">
                 <div className="delivery-options-title font-bold">
                   Choose a delivery option:
                 </div>
@@ -55,45 +59,6 @@ export default function CartCard({productId, quantity, deliveryOptionId, deliver
                     </div>
                   )
                 })}
-                {/* <div className="delivery-option flex gap-2">
-                  <input checked type="radio" className="delivery-option-input" name={`delivery-option-${productId}`} />
-                  
-                  <div>
-                    <div className="delivery-option-date font-medium">
-                      Tuesday, June 21
-                    </div>
-                    <div className="delivery-option-price text-gray-500">
-                      --{deliveryOption.find((item) => item.deliveryOptionId == deliveryOption).priceCents / 100} Shipping
-                    </div>
-                  </div>
-
-                </div>
-                <div className="delivery-option flex gap-2">
-                  <input type="radio" className="delivery-option-input" name={`delivery-option-${productId}`} />
-                  
-                  <div>
-                    <div className="delivery-option-date font-medium">
-                      Wednesday, June 15
-                    </div>
-                    <div className="delivery-option-price text-gray-500">
-                      $4.99 - Shipping
-                    </div>
-                  </div>
-
-                </div>
-                <div className="delivery-option flex gap-2">
-                  <input type="radio" className="delivery-option-input" name={`delivery-option-${productId}`} />
-                  
-                  <div>
-                    <div className="delivery-option-date font-medium">
-                      Monday, June 13
-                    </div>
-                    <div className="delivery-option-price text-gray-500">
-                      $9.99 - Shipping
-                    </div>
-                  </div>
-
-                </div> */}
               </div>
             </div>
           </div>

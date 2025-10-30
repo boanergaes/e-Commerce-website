@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { PaymentSummaryContext } from "../App";
 
 export default function Header() {
+    const paymentSummary = useContext(PaymentSummaryContext)
+
     return (
         <header className="header flex justify-between items-center gap-10 fixed top-0 z-10 w-screen bg-green-900 text-white font-bold px-10 py-4">
             <div className="left-section">
@@ -26,7 +30,7 @@ export default function Header() {
                 <Link className="cart-link header-link flex gap-3 hover:underline" to="/checkout">
                     <div className="cart-quantity shrink-0 relative">
                         <img className="cart-icon size-7" src="/images/icons/cart-icon.png" />
-                        <span className="text-black text-[.9rem] absolute -top-0.5  left-3">3</span>
+                        <span className="text-black text-[.9rem] absolute -top-0.5  left-3">{paymentSummary.totQuantity}</span>
                     </div>
                     <div className="cart-text">Cart</div>
                 </Link>

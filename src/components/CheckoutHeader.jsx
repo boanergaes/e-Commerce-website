@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { PaymentSummaryContext } from "../App";
 
 export default function CheckoutHeader() {
+    const paymentSummary = useContext(PaymentSummaryContext)
+
     return (
         <header className="checkout-header py-3 px-[30px]">
             <div className="header-content max-w-[1100px] flex justify-between items-center mx-auto">
@@ -12,7 +16,7 @@ export default function CheckoutHeader() {
                 </div>
 
                 <div className="checkout-header-middle-section text-2xl font-medium">
-                    Checkout (<Link className="return-to-home-link text-[#198754]" to="/">3 items</Link>)
+                    Checkout (<Link className="return-to-home-link text-[#198754]" to="/">{paymentSummary.totQuantity} items</Link>)
                 </div>
 
                 <div className="checkout-header-right-section">
